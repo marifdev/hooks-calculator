@@ -1,23 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+
+import DataInput from "./components/DataInput"
+import CalcButtons from "./components/CalcButtons"
+import Operations from "./components/Operations"
+import "./App.css";
 
 function App() {
+  const [data, setData] = useState("");
+
+  function handleCalcButtonsClick(value) {
+    setData(data + value);
+  }
+
+  function handleOperationsClick(value) {
+    setData(data + value)
+  }
+
+  function handleEqualsClick() {
+    try {
+      setData(
+        String(eval(data)).length > 3 &&
+        String(eval(data)).includes(".")
+         ? String(eval(data).toFixed(4))
+          : String(eval(data))
+      )
+    }
+    catch(err) {
+      console.log(err)
+    }
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="wrapper">
+      <DataInput data={data}></DataInput>
+      <CalcButtons onClick={handleCalcButtonsClick}></CalcButtons>
+      <div className="modifiers subgrid">
+        <button onClick={() => setData(data.substr(0, data.length - 1))}>Clear</button>
+        <button onClick={() => setData("")}>AC</button>
+      </div>
+      <Operations onClick={handleOperationsClick} onEqualsClick={handleEqualsClick}></Operations>
     </div>
   );
 }
