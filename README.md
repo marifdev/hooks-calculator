@@ -2,6 +2,10 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## What is this?
+
+This project is a calculator app from [Patika.dev](https://app.patika.dev/egitimler/frontend-web-development-patikasi/react/hooks-hesap-makinesi) Hooks tutorial. But I differentiated it by separating it into components.
+
 ## Available Scripts
 
 In the project directory, you can run:
