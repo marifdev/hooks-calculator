@@ -9,7 +9,9 @@ function App() {
   const [data, setData] = useState("");
 
   function handleCalcButtonsClick(value) {
-    setData(data + value);
+    if(!(data.length === 0 && ["0",".","%"].includes(value))){
+      setData(data + value);
+    }
   }
 
   function handleOperationsClick(value) {
